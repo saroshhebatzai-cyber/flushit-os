@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flush It — Command</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black:   #0E0D0B;
+    --offblack: #1A1714;
+    --yellow:  #FFD000;
+    --pink:    #FF2775;
+    --beige:   #F5F0E6;
+    --beige2:  #EDE8DC;
+    --white:   #FFFFFF;
+    --muted:   #6B6358;
+    --ink:     #3D3830;
+    --rule:    #2A2720;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--black);
+    font-family: 'DM Sans', sans-serif;
+    color: var(--white);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+  }
+
+  /* ── NOISE TEXTURE ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ── HEADER ── */
+  .header {
+    padding: 44px 60px 0;
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+  }
+
+  .brand-mark {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .brand-icon {
+    width: 36px;
+    height: 36px;
+    background: var(--yellow);
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .brand-icon svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .brand-name {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 13px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--yellow);
+  }
+
+  .brand-slash {
+    color: var(--rule);
+    font-weight: 300;
+    font-size: 18px;
+    margin: 0 2px;
+  }
+
+  .brand-subtitle {
+    font-family: 'Syne', sans-serif;
+    font-weight: 500;
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+  }
+
+  .header-date {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+    text-align: right;
+    line-height: 1.7;
+  }
+
+  .header-date .time {
+    display: block;
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--white);
+    letter-spacing: 0.04em;
+    line-height: 1.2;
+  }
+
+  /* ── HERO TEXT ── */
+  .hero {
+    padding: 64px 60px 0;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 16px;
+  }
+
+  .hero-name {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: clamp(44px, 6vw, 72px);
+    line-height: 0.94;
+    color: var(--white);
+    letter-spacing: -0.02em;
+    margin-bottom: 6px;
+  }
+
+  .hero-name span {
+    color: var(--yellow);
+  }
+
+  .hero-tagline {
+    font-size: 14px;
+    color: var(--muted);
+    font-weight: 300;
+    margin-top: 16px;
+    letter-spacing: 0.01em;
+  }
+
+  /* ── DIVIDER ── */
+  .divider {
+    height: 1px;
+    background: var(--rule);
+    margin: 48px 60px 0;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ── TILES GRID ── */
+  .tiles-section {
+    padding: 48px 60px 80px;
+    position: relative;
+    z-index: 1;
+    flex: 1;
+  }
+
+  .tiles-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 28px;
+  }
+
+  .tiles-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  /* ── TILE ── */
+  .tile {
+    position: relative;
+    background: var(--offblack);
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+    padding: 36px 36px 32px;
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    overflow: hidden;
+    transition: border-color 0.2s ease, transform 0.15s ease;
+    min-height: 220px;
+  }
+
+  .tile::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+
+  .tile:hover {
+    transform: translateY(-2px);
+  }
+
+  .tile:hover::before {
+    opacity: 1;
+  }
+
+  /* Tile accent colors */
+  .tile.personal {
+    border-top: 3px solid var(--yellow);
+  }
+  .tile.personal::before {
+    background: linear-gradient(135deg, rgba(255, 208, 0, 0.04) 0%, transparent 60%);
+  }
+  .tile.personal:hover {
+    border-color: var(--yellow);
+    border-top-width: 3px;
+  }
+
+  .tile.bebatzai {
+    border-top: 3px solid #C8760A;
+  }
+  .tile.bebatzai::before {
+    background: linear-gradient(135deg, rgba(200, 118, 10, 0.05) 0%, transparent 60%);
+  }
+  .tile.bebatzai:hover {
+    border-color: #C8760A;
+    border-top-width: 3px;
+  }
+
+  .tile.brands {
+    border-top: 3px solid var(--pink);
+  }
+  .tile.brands::before {
+    background: linear-gradient(135deg, rgba(255, 39, 117, 0.05) 0%, transparent 60%);
+  }
+  .tile.brands:hover {
+    border-color: var(--pink);
+    border-top-width: 3px;
+  }
+
+  .tile.hub {
+    border-top: 3px solid #4A7459;
+  }
+  .tile.hub::before {
+    background: linear-gradient(135deg, rgba(74, 116, 89, 0.05) 0%, transparent 60%);
+  }
+  .tile.hub:hover {
+    border-color: #4A7459;
+    border-top-width: 3px;
+  }
+
+  /* Tile number */
+  .tile-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 1;
+  }
+  .tile.personal .tile-num  { color: rgba(255, 208, 0, 0.4); }
+  .tile.bebatzai .tile-num  { color: rgba(200, 118, 10, 0.5); }
+  .tile.brands .tile-num    { color: rgba(255, 39, 117, 0.4); }
+  .tile.hub .tile-num       { color: rgba(74, 116, 89, 0.5); }
+
+  /* Tile title */
+  .tile-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    margin-bottom: 10px;
+    position: relative;
+    z-index: 1;
+    color: var(--white);
+  }
+
+  /* Tile desc */
+  .tile-desc {
+    font-size: 13px;
+    color: var(--muted);
+    font-weight: 300;
+    line-height: 1.6;
+    flex: 1;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Tile tags */
+  .tile-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 20px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .tile-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    padding: 4px 10px;
+    border-radius: 2px;
+    border: 1px solid;
+  }
+
+  .tile.personal .tile-tag  { color: rgba(255,208,0,0.5);   border-color: rgba(255,208,0,0.15);   background: rgba(255,208,0,0.04); }
+  .tile.bebatzai .tile-tag  { color: rgba(200,118,10,0.6);  border-color: rgba(200,118,10,0.2);   background: rgba(200,118,10,0.05); }
+  .tile.brands .tile-tag    { color: rgba(255,39,117,0.6);  border-color: rgba(255,39,117,0.15);  background: rgba(255,39,117,0.04); }
+  .tile.hub .tile-tag       { color: rgba(74,116,89,0.7);   border-color: rgba(74,116,89,0.2);    background: rgba(74,116,89,0.05); }
+
+  /* Arrow */
+  .tile-arrow {
+    position: absolute;
+    bottom: 28px;
+    right: 32px;
+    font-size: 18px;
+    opacity: 0;
+    transition: all 0.2s ease;
+    z-index: 1;
+  }
+  .tile.personal .tile-arrow  { color: var(--yellow); }
+  .tile.bebatzai .tile-arrow  { color: #C8760A; }
+  .tile.brands .tile-arrow    { color: var(--pink); }
+  .tile.hub .tile-arrow       { color: #4A7459; }
+
+  .tile:hover .tile-arrow {
+    opacity: 1;
+    transform: translate(3px, -3px);
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    padding: 0 60px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    z-index: 1;
+  }
+
+  .footer-left {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    color: var(--rule);
+    text-transform: uppercase;
+  }
+
+  .footer-right {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    color: var(--rule);
+  }
+
+  /* ── ACCENT LINE ── */
+  .accent-line {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 3px;
+    height: 100%;
+    background: linear-gradient(180deg, var(--yellow) 0%, var(--pink) 50%, #4A7459 100%);
+    opacity: 0.6;
+    z-index: 10;
+  }
+</style>
+</head>
+<body>
+
+<div class="accent-line"></div>
+
+<div class="header">
+  <div class="brand-mark">
+    <div class="brand-icon">
+      <svg viewBox="0 0 18 18" fill="none">
+        <rect x="2" y="2" width="6" height="6" fill="#0E0D0B"/>
+        <rect x="10" y="2" width="6" height="6" fill="#0E0D0B"/>
+        <rect x="2" y="10" width="6" height="6" fill="#0E0D0B"/>
+        <rect x="10" y="10" width="6" height="6" fill="#0E0D0B" opacity="0.4"/>
+      </svg>
+    </div>
+    <div>
+      <div style="display:flex;align-items:center;gap:8px;">
+        <span class="brand-name">Flush It</span>
+        <span class="brand-slash">/</span>
+        <span class="brand-subtitle">Command</span>
+      </div>
+    </div>
+  </div>
+  <div class="header-date">
+    <span class="time" id="live-time">--:--</span>
+    <span id="live-date">Loading...</span>
+  </div>
+</div>
+
+<div class="hero">
+  <div class="hero-label">Good to have you back</div>
+  <div class="hero-name">Sarosh<span>.</span></div>
+  <div class="hero-tagline">Everything you need — one place. Pick a system.</div>
+</div>
+
+<div class="divider"></div>
+
+<div class="tiles-section">
+  <div class="tiles-label">Your systems</div>
+
+  <div class="tiles-grid">
+
+    <!-- MY WEEK -->
+    <a class="tile personal" href="sarosh_planner.html" target="_blank">
+      <div class="tile-num">01 — PERSONAL</div>
+      <div class="tile-title">My Week</div>
+      <div class="tile-desc">Daily tasks, parking lot, week navigation. Where your day actually starts. Task status tracking across Mon–Fri.</div>
+      <div class="tile-tags">
+        <span class="tile-tag">TASKS</span>
+        <span class="tile-tag">STATUS</span>
+        <span class="tile-tag">PARKING LOT</span>
+        <span class="tile-tag">WEEKLY NAV</span>
+      </div>
+      <div class="tile-arrow">↗</div>
+    </a>
+
+    <!-- BEBATZAI -->
+    <a class="tile bebatzai" href="bebatzai.html" target="_blank">
+      <div class="tile-num">02 — PERSONAL</div>
+      <div class="tile-title">Bebatzai</div>
+      <div class="tile-desc">Content system, capture board, weekly posting rhythm. Raw ideas, filmed footage, hooks, and your 4:1 guide.</div>
+      <div class="tile-tags">
+        <span class="tile-tag">CAPTURE</span>
+        <span class="tile-tag">CONTENT BANK</span>
+        <span class="tile-tag">WEEKLY RHYTHM</span>
+        <span class="tile-tag">GUIDE</span>
+      </div>
+      <div class="tile-arrow">↗</div>
+    </a>
+
+    <!-- BRANDS CALENDAR -->
+    <a class="tile brands" href="brands_calendar.html" target="_blank">
+      <div class="tile-num">03 — WORK</div>
+      <div class="tile-title">Brands Calendar</div>
+      <div class="tile-desc">Client content calendars. One tab per brand. Shared with your social media manager for scheduling and status.</div>
+      <div class="tile-tags">
+        <span class="tile-tag">OSDO</span>
+        <span class="tile-tag">WINGOS</span>
+        <span class="tile-tag">ORAAN</span>
+        <span class="tile-tag">DANISH ALI</span>
+        <span class="tile-tag">+ MORE</span>
+      </div>
+      <div class="tile-arrow">↗</div>
+    </a>
+
+    <!-- CONTENT HUB -->
+    <a class="tile hub" href="content_hub.html" target="_blank">
+      <div class="tile-num">04 — WORK / TEAM</div>
+      <div class="tile-title">Content Hub</div>
+      <div class="tile-desc">Team-facing production tracker. Editors see daily edit progress, status, and delivery pipeline across all active projects.</div>
+      <div class="tile-tags">
+        <span class="tile-tag">EDIT PROGRESS</span>
+        <span class="tile-tag">TEAM VIEW</span>
+        <span class="tile-tag">PRODUCTION</span>
+        <span class="tile-tag">DELIVERY</span>
+      </div>
+      <div class="tile-arrow">↗</div>
+    </a>
+
+  </div>
+</div>
+
+<div class="footer">
+  <div class="footer-left">Flush It — Creative House (Pvt) Ltd</div>
+  <div class="footer-right" id="footer-week"></div>
+</div>
+
+<script>
+const DAYS  = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+const MONTHS= ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
+function pad(n){ return String(n).padStart(2,'0'); }
+
+function tick() {
+  const now = new Date();
+  const h = pad(now.getHours());
+  const m = pad(now.getMinutes());
+  document.getElementById('live-time').textContent = h + ':' + m;
+  document.getElementById('live-date').textContent =
+    DAYS[now.getDay()] + ' · ' + now.getDate() + ' ' + MONTHS[now.getMonth()] + ' ' + now.getFullYear();
+
+  // Week footer
+  const day = now.getDay();
+  const diff = day === 0 ? -6 : 1 - day;
+  const mon = new Date(now); mon.setDate(now.getDate() + diff);
+  const fri = new Date(mon); fri.setDate(mon.getDate() + 4);
+  document.getElementById('footer-week').textContent =
+    'Week of ' + mon.getDate() + ' ' + MONTHS[mon.getMonth()] + ' – ' + fri.getDate() + ' ' + MONTHS[fri.getMonth()];
+}
+
+tick();
+setInterval(tick, 30000);
+</script>
+</body>
+</html>
