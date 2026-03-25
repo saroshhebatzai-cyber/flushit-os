@@ -222,10 +222,10 @@ body{font-family:'DM Sans',sans-serif;color:var(--ink);min-height:100vh;backgrou
 .lc-note{font-size:11px;color:var(--muted);font-style:italic;margin-top:1px;}
 .lc-plat{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);}
 .sp{font-family:'DM Mono',monospace;font-size:10px;padding:3px 7px;border-radius:2px;letter-spacing:.06em;text-transform:uppercase;display:inline-block;}
-.sp-idea{background:#F0EAFD;color:#5E35B1;} .sp-scripted{background:#FFF3CD;color:#7D4F00;}
+.sp-idea{background:#F0EAFD;color:#5E35B1;}
 .sp-filming{background:var(--steel-lt);color:var(--steel);} .sp-editing{background:#FDF0EB;color:#C8380A;}
-.sp-review{background:#FDF3E0;color:#7D4F00;} .sp-approved{background:var(--sage-lt);color:var(--sage);}
-.sp-scheduled{background:var(--sage-lt);color:var(--sage);} .sp-posted{background:var(--offblack);color:var(--yellow);}
+.sp-review{background:#FDF3E0;color:#7D4F00;} .sp-blocked{background:#FFE5E5;color:#B91C1C;}
+.sp-approved{background:var(--sage-lt);color:var(--sage);} .sp-posted{background:var(--offblack);color:var(--yellow);}
 .del-row-btn{opacity:0;background:none;border:none;color:var(--rule);cursor:pointer;font-size:14px;padding:3px 6px;border-radius:2px;transition:all .15s;}
 .list-row:hover .del-row-btn,.prod-table tr:hover .del-row-btn{opacity:1;}
 .del-row-btn:hover{color:#B91C1C;background:#FFE5E5;}
@@ -308,6 +308,43 @@ body{font-family:'DM Sans',sans-serif;color:var(--ink);min-height:100vh;backgrou
 .clear-cap-btn{font-size:11px;color:var(--warm);background:none;border:1px solid var(--rule);border-radius:100px;padding:3px 9px;cursor:pointer;transition:all .15s;}
 .clear-cap-btn:hover{border-color:var(--rose);color:var(--rose);}
 
+
+/* ── STATS ── */
+.stats-row{display:grid;grid-template-columns:32px 1fr 80px 80px 80px 80px 110px 32px;align-items:center;border-bottom:1px solid var(--rule);min-height:42px;background:var(--white);transition:background .1s;}
+.stats-row:hover{background:var(--beige);}
+.stat-cell{padding:7px 10px;font-size:12px;}
+.stat-input{width:100%;border:1px solid transparent;border-radius:2px;padding:4px 6px;font-family:'DM Mono',monospace;font-size:12px;color:var(--ink);background:transparent;outline:none;text-align:center;transition:all .15s;}
+.stat-input:hover{border-color:var(--rule);background:var(--white);}
+.stat-input:focus{border-color:var(--amber-mid);background:var(--white);}
+.stat-input::placeholder{color:var(--rule);}
+.stat-hdr{background:var(--offblack);display:grid;grid-template-columns:32px 1fr 80px 80px 80px 80px 110px 32px;padding:7px 10px;}
+.stat-th{font-family:'DM Mono',monospace;font-size:9px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:#555;text-align:center;}
+.stat-th.left{text-align:left;}
+.stats-total-bar{display:grid;grid-template-columns:32px 1fr 80px 80px 80px 80px 110px 32px;padding:8px 10px;background:var(--beige2);border-top:2px solid var(--rule);}
+.total-cell{font-family:'DM Mono',monospace;font-size:11px;font-weight:500;color:var(--ink);text-align:center;padding:0 10px;}
+.total-cell.label{text-align:left;font-family:'Syne',sans-serif;font-weight:700;font-size:12px;}
+/* Report button */
+.report-btn{font-family:'DM Mono',monospace;font-size:10px;font-weight:700;padding:7px 14px;border:none;border-radius:2px;cursor:pointer;letter-spacing:.1em;text-transform:uppercase;background:var(--offblack);color:var(--yellow);transition:all .15s;white-space:nowrap;}
+.report-btn:hover{background:#2A2520;}
+/* Report modal */
+.report-wrap{padding:0;}
+.report-hdr-block{background:var(--offblack);padding:32px 36px;border-bottom:3px solid var(--yellow);}
+.report-brand-name{font-family:'Syne',sans-serif;font-weight:800;font-size:28px;color:var(--white);margin-bottom:4px;}
+.report-period{font-family:'DM Mono',monospace;font-size:11px;color:#666;letter-spacing:.12em;text-transform:uppercase;}
+.report-summary{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--rule);border-bottom:1px solid var(--rule);}
+.report-stat-box{background:var(--white);padding:20px 24px;}
+.rsb-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:6px;}
+.rsb-value{font-family:'Syne',sans-serif;font-weight:800;font-size:28px;color:var(--offblack);line-height:1;}
+.report-posts-section{padding:24px 36px;}
+.report-post-row{display:grid;grid-template-columns:1fr 70px 70px 70px 70px 100px;gap:0;border-bottom:1px solid var(--rule);padding:10px 0;align-items:center;}
+.report-post-row:last-child{border-bottom:none;}
+.rpr-title{font-size:13px;font-weight:500;color:var(--offblack);padding-right:12px;}
+.rpr-plat{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);margin-top:2px;}
+.rpr-num{font-family:'DM Mono',monospace;font-size:12px;color:var(--ink);text-align:center;}
+.rpr-num.zero{color:var(--rule);}
+.report-post-hdr{display:grid;grid-template-columns:1fr 70px 70px 70px 70px 100px;gap:0;padding:8px 0;border-bottom:2px solid var(--offblack);}
+.rph-cell{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);text-align:center;}
+.rph-cell.left{text-align:left;}
 /* ── MODAL ── */
 .overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:2000;align-items:center;justify-content:center;}
 .overlay.open{display:flex;}
@@ -362,10 +399,10 @@ body{font-family:'DM Sans',sans-serif;color:var(--ink);min-height:100vh;backgrou
 <nav class="topnav">
   <div class="nav-brand">Flush It</div>
   <button class="nav-btn nb-hub active" onclick="switchPane('hub',this)">OS</button>
-  <button class="nav-btn nb-week" onclick="switchPane('week',this)">My Week</button>
   <button class="nav-btn nb-brands" onclick="switchPane('brands',this)"><span class="nav-dot"></span>Brands</button>
-  <button class="nav-btn nb-bebatzai" onclick="switchPane('bebatzai',this)"><span class="nav-dot"></span>Bebatzai</button>
   <button class="nav-btn nb-ops" onclick="switchPane('ops',this)"><span class="nav-dot"></span>Ops Hub</button>
+  <button class="nav-btn nb-week" onclick="switchPane('week',this)">My Week</button>
+  <button class="nav-btn nb-bebatzai" onclick="switchPane('bebatzai',this)"><span class="nav-dot"></span>Bebatzai</button>
   <div class="nav-right">
     <div class="sync-indicator"><div class="sync-dot" id="syncDot"></div><span id="syncTxt">Connecting...</span></div>
     <div class="nav-time" id="navTime"></div>
@@ -382,32 +419,32 @@ body{font-family:'DM Sans',sans-serif;color:var(--ink);min-height:100vh;backgrou
     </div>
     <div class="hub-divider"></div>
     <div class="hub-tiles">
-      <div class="hub-tile ht-week" onclick="switchPane('week',document.querySelector('.nb-week'))">
-        <div class="ht-num">01 — PERSONAL</div>
-        <div class="ht-title">My Week</div>
-        <div class="ht-desc">Daily tasks, parking lot, week navigation. Where your day starts.</div>
-        <div class="ht-tags"><span class="ht-tag">TASKS</span><span class="ht-tag">STATUS</span><span class="ht-tag">PARKING LOT</span></div>
-        <div class="ht-arrow">↗</div>
-      </div>
-      <div class="hub-tile ht-bebatzai" onclick="switchPane('bebatzai',document.querySelector('.nb-bebatzai'))">
-        <div class="ht-num">02 — PERSONAL</div>
-        <div class="ht-title">Bebatzai</div>
-        <div class="ht-desc">Content bank, capture board, and your 4:1 content guide.</div>
-        <div class="ht-tags"><span class="ht-tag">CONTENT BANK</span><span class="ht-tag">CAPTURE</span><span class="ht-tag">GUIDE</span></div>
-        <div class="ht-arrow">↗</div>
-      </div>
       <div class="hub-tile ht-brands" onclick="switchPane('brands',document.querySelector('.nb-brands'))">
-        <div class="ht-num">03 — WORK</div>
+        <div class="ht-num">01 — WORK</div>
         <div class="ht-title">Brands Calendar</div>
         <div class="ht-desc">Client content calendars — shared with your social media manager.</div>
         <div class="ht-tags"><span class="ht-tag">OSDO</span><span class="ht-tag">WINGOS</span><span class="ht-tag">ORAAN</span><span class="ht-tag">+ MORE</span></div>
         <div class="ht-arrow">↗</div>
       </div>
       <div class="hub-tile ht-ops" onclick="switchPane('ops',document.querySelector('.nb-ops'))">
-        <div class="ht-num">04 — WORK / TEAM</div>
+        <div class="ht-num">02 — WORK / TEAM</div>
         <div class="ht-title">Ops Hub</div>
         <div class="ht-desc">Production tracker, edit progress, delivery pipeline. Team-facing.</div>
         <div class="ht-tags"><span class="ht-tag">EDIT PROGRESS</span><span class="ht-tag">TEAM VIEW</span><span class="ht-tag">SUPABASE</span></div>
+        <div class="ht-arrow">↗</div>
+      </div>
+      <div class="hub-tile ht-week" onclick="switchPane('week',document.querySelector('.nb-week'))">
+        <div class="ht-num">03 — PERSONAL</div>
+        <div class="ht-title">My Week</div>
+        <div class="ht-desc">Daily tasks, parking lot, week navigation. Where your day starts.</div>
+        <div class="ht-tags"><span class="ht-tag">TASKS</span><span class="ht-tag">STATUS</span><span class="ht-tag">PARKING LOT</span></div>
+        <div class="ht-arrow">↗</div>
+      </div>
+      <div class="hub-tile ht-bebatzai" onclick="switchPane('bebatzai',document.querySelector('.nb-bebatzai'))">
+        <div class="ht-num">04 — PERSONAL</div>
+        <div class="ht-title">Bebatzai</div>
+        <div class="ht-desc">Content bank, capture board, and your 4:1 content guide.</div>
+        <div class="ht-tags"><span class="ht-tag">CONTENT BANK</span><span class="ht-tag">CAPTURE</span><span class="ht-tag">GUIDE</span></div>
         <div class="ht-arrow">↗</div>
       </div>
     </div>
@@ -581,6 +618,112 @@ const BRANDS = [
   {id:'safepay', name:'Safepay',    retainer:'PKR 275k/month',               posts:'—',                      status:'paused', color:'#00796B', type:'calendar'},
 ];
 
+// Persist custom brands
+const BRANDS_SK='fi_brands_custom';
+function loadCustomBrands(){
+  try{
+    const saved=JSON.parse(localStorage.getItem(BRANDS_SK));
+    if(saved&&saved.length>0){
+      // Merge saved into BRANDS array (add any not already present)
+      saved.forEach(b=>{
+        if(!BRANDS.find(x=>x.id===b.id)) BRANDS.push(b);
+      });
+    }
+  }catch{}
+}
+function saveCustomBrands(){
+  // Save only non-default brands
+  const defaults=['osdo','wingos','oraan','danish','baraatzai','safepay'];
+  const custom=BRANDS.filter(b=>!defaults.includes(b.id));
+  localStorage.setItem(BRANDS_SK,JSON.stringify(custom));
+}
+
+const PALETTE=[
+  {color:'#C8380A',name:'Red'},
+  {color:'#3D5A80',name:'Blue'},
+  {color:'#5E35B1',name:'Purple'},
+  {color:'#2E7D32',name:'Green'},
+  {color:'#8B5E3C',name:'Brown'},
+  {color:'#00796B',name:'Teal'},
+  {color:'#C8760A',name:'Amber'},
+  {color:'#B85C63',name:'Rose'},
+];
+
+function openAddBrand(){
+  const paletteHtml=PALETTE.map((p,i)=>`
+    <div onclick="selectBrandColor(this,'${p.color}')"
+         style="width:28px;height:28px;border-radius:50%;background:${p.color};cursor:pointer;border:3px solid transparent;transition:all .15s;flex-shrink:0;"
+         data-color="${p.color}" title="${p.name}"></div>`).join('');
+
+  document.getElementById('modalTitle').textContent='Add New Brand';
+  document.getElementById('modalBox').style.borderTopColor='var(--yellow)';
+  document.getElementById('modalBody').innerHTML=`
+    <div class="fg"><label class="flbl">Brand Name</label><input class="fi" id="nb-name" placeholder="e.g. Couture de Malaika"></div>
+    <div class="fg">
+      <label class="flbl">Default View</label>
+      <select class="fs" id="nb-type">
+        <option value="calendar">Calendar — date-first (OSDO style)</option>
+        <option value="production">Reel Table — production-first (Wingos style)</option>
+      </select>
+    </div>
+    <div class="fg">
+      <label class="flbl">Status</label>
+      <select class="fs" id="nb-status">
+        <option value="active">Active</option>
+        <option value="paused">Paused</option>
+      </select>
+    </div>
+    <div class="fg">
+      <label class="flbl">Brand Colour</label>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:4px;" id="colorPalette">${paletteHtml}</div>
+      <input type="hidden" id="nb-color" value="${PALETTE[0].color}">
+    </div>`;
+
+  // Pre-select first color
+  setTimeout(()=>{
+    const first=document.querySelector('#colorPalette div');
+    if(first) selectBrandColor(first, PALETTE[0].color);
+  },50);
+
+  document.getElementById('modalActs').innerHTML=`
+    <button class="btn-c" onclick="closeModal()">Cancel</button>
+    <button class="btn-s" onclick="saveNewBrand()">Add Brand</button>`;
+  document.getElementById('overlay').classList.add('open');
+  setTimeout(()=>document.getElementById('nb-name').focus(),60);
+}
+
+function selectBrandColor(el, color){
+  document.querySelectorAll('#colorPalette div').forEach(d=>{
+    d.style.border='3px solid transparent';
+    d.style.transform='scale(1)';
+  });
+  el.style.border='3px solid white';
+  el.style.transform='scale(1.15)';
+  document.getElementById('nb-color').value=color;
+}
+
+function saveNewBrand(){
+  const name=document.getElementById('nb-name').value.trim();
+  if(!name){document.getElementById('nb-name').focus();return;}
+  const id='brand_'+Date.now();
+  const newBrand={
+    id,
+    name,
+    retainer:'',
+    posts:'',
+    status:document.getElementById('nb-status').value,
+    color:document.getElementById('nb-color').value||PALETTE[0].color,
+    type:document.getElementById('nb-type').value,
+  };
+  BRANDS.push(newBrand);
+  saveCustomBrands();
+  closeModal();
+  currentBrand=id;
+  brandViews[id]=newBrand.type==='production'?'production':'calendar';
+  renderBrandTabs();
+  renderBrandsMain();
+}
+
 const MFL=['January','February','March','April','May','June','July','August','September','October','November','December'];
 const MFS=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 const DS=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
@@ -731,7 +874,7 @@ function renderWeekNav(){
   nav.innerHTML='';
   for(let i=-1;i<=3;i++){
     const ws=getWeekStart(i);
-    const we=new Date(ws);we.setDate(ws.getDate()+4);
+    const we=new Date(ws);we.setDate(ws.getDate()+6);
     const label=i===0?'This week':i===-1?'Last week':i===1?'Next week':ws.getDate()+' '+MFS[ws.getMonth()]+' – '+we.getDate()+' '+MFS[we.getMonth()];
     const btn=document.createElement('button');
     btn.className='wp-pill'+(i===plannerWeekOffset?' active':'');
@@ -746,7 +889,7 @@ function renderDays(){
   if(!container)return;
   container.innerHTML='';
   const today=new Date();today.setHours(0,0,0,0);
-  for(let i=0;i<5;i++){
+  for(let i=0;i<7;i++){
     const d=new Date(plannerWeekStart);d.setDate(plannerWeekStart.getDate()+i);
     const k=isoStr(d);
     const tasks=plannerWeekData[k]||[];
@@ -795,7 +938,11 @@ function renderDays(){
       const blocked=tasks.filter(t=>t.status==='blocked').length;
       bodyHtml+=`<div class="today-stats"><div class="stat"><span>${tasks.length}</span>Total</div><div class="stat"><span>${doneCount}</span>Done</div>${inProg?`<div class="stat"><span>${inProg}</span>In progress</div>`:''} ${blocked?`<div class="stat"><span style="color:var(--pink)">${blocked}</span>Blocked</div>`:''}</div>`;
     }
-    bodyHtml+=`<div class="add-task-row"><input class="add-task-input" placeholder="Add task..." data-day="${k}" onkeydown="if(event.key==='Enter')addTask('${k}')"><button class="add-task-btn" onclick="addTask('${k}')">+ Add</button></div>`;
+    bodyHtml+=`<div class="add-task-row" style="flex-wrap:wrap;gap:6px;">
+      <input class="add-task-input" placeholder="Add task..." data-day="${k}" onkeydown="if(event.key==='Enter')addTask('${k}')" style="flex:1;min-width:200px;">
+      <input class="add-task-input" placeholder="Notes (optional)" data-notes="${k}" style="flex:1;min-width:160px;font-size:12px;color:var(--muted);font-style:italic;" onkeydown="if(event.key==='Enter')addTask('${k}')">
+      <button class="add-task-btn" onclick="addTask('${k}')">+ Add</button>
+    </div>`;
     bodyHtml+='</div>';
     block.innerHTML=hdrHtml+bodyHtml;
     container.appendChild(block);
@@ -816,21 +963,85 @@ function renderParking(){
 
 function addTask(k){
   const input=document.querySelector(`.add-task-input[data-day="${k}"]`);
+  const notesInput=document.querySelector(`.add-task-input[data-notes="${k}"]`);
   const name=input?.value.trim();if(!name)return;
+  const notes=notesInput?.value.trim()||'';
   if(!plannerWeekData[k])plannerWeekData[k]=[];
-  plannerWeekData[k].push({id:uid(),name,notes:'',status:'todo'});
+  plannerWeekData[k].push({id:uid(),name,notes,status:'todo'});
   savePlannerWeek(plannerWeekStart,plannerWeekData);
-  input.value='';renderDays();
+  input.value='';if(notesInput)notesInput.value='';
+  // Re-render only the task list inside this day block, not the whole planner
+  refreshDayBlock(k);
+  // Keep focus on the task input so user can keep adding
+  setTimeout(()=>{const el=document.querySelector(`.add-task-input[data-day="${k}"]`);if(el)el.focus();},50);
+}
+
+function refreshDayBlock(k){
+  const block=document.querySelector(`.day-block[data-key="${k}"]`);
+  if(!block){renderDays();return;}
+  const tasks=plannerWeekData[k]||[];
+  const today=new Date();today.setHours(0,0,0,0);
+  const isToday=k===isoStr(today);
+  const doneCount=tasks.filter(t=>t.status==='done').length;
+  const badgeCls=doneCount===tasks.length&&tasks.length>0?' all-done':'';
+  const badge=tasks.length>0?`<span class="tc-badge${badgeCls}">${doneCount}/${tasks.length}</span>`:'';
+
+  // Update badge in header
+  const existingBadge=block.querySelector('.tc-badge');
+  if(existingBadge)existingBadge.remove();
+  const dl=block.querySelector('.dl');
+  if(dl&&badge){dl.insertAdjacentHTML('beforeend',badge);}
+
+  // Rebuild body content only
+  const body=block.querySelector('.day-body');
+  if(!body)return;
+
+  let bodyHtml='';
+  if(tasks.length>0){
+    bodyHtml+=`<div class="task-table-hdr"><div class="th"></div><div class="th">Task</div><div class="th">Status</div><div class="th"></div></div>`;
+    tasks.forEach(t=>{
+      const dotCls=t.status==='done'?'d-done':t.status==='in-progress'?'d-prog':t.status==='blocked'?'d-block':'';
+      const selCls=t.status==='done'?'s-done':t.status==='in-progress'?'s-progress':t.status==='blocked'?'s-blocked':'s-todo';
+      bodyHtml+=`<div class="task-row${t.status==='done'?' done-row':''}" data-id="${t.id}">
+        <div class="sdot"><div class="dot ${dotCls}"></div></div>
+        <div class="tname-cell"><div class="tname">${esc(t.name)}</div>${t.notes?`<div class="tnotes">${esc(t.notes)}</div>`:''}</div>
+        <div style="padding:6px 10px;">
+          <select class="tselect ${selCls}" onchange="updateTaskStatus('${k}','${t.id}',this)">
+            <option value="todo" ${t.status==='todo'?'selected':''}>Not started</option>
+            <option value="in-progress" ${t.status==='in-progress'?'selected':''}>In progress</option>
+            <option value="done" ${t.status==='done'?'selected':''}>Done ✓</option>
+            <option value="blocked" ${t.status==='blocked'?'selected':''}>Blocked</option>
+          </select>
+        </div>
+        <div><button class="del-task-btn" onclick="deleteTask('${k}','${t.id}')">×</button></div>
+      </div>`;
+    });
+  } else {
+    bodyHtml+=`<div class="empty-day">No tasks yet — add one below</div>`;
+  }
+
+  if(isToday&&tasks.length>0){
+    const inProg=tasks.filter(t=>t.status==='in-progress').length;
+    const blocked=tasks.filter(t=>t.status==='blocked').length;
+    bodyHtml+=`<div class="today-stats"><div class="stat"><span>${tasks.length}</span>Total</div><div class="stat"><span>${doneCount}</span>Done</div>${inProg?`<div class="stat"><span>${inProg}</span>In progress</div>`:''} ${blocked?`<div class="stat"><span style="color:var(--pink)">${blocked}</span>Blocked</div>`:''}</div>`;
+  }
+  bodyHtml+=`<div class="add-task-row" style="flex-wrap:wrap;gap:6px;">
+    <input class="add-task-input" placeholder="Add task..." data-day="${k}" onkeydown="if(event.key==='Enter')addTask('${k}')" style="flex:1;min-width:200px;">
+    <input class="add-task-input" placeholder="Notes (optional)" data-notes="${k}" style="flex:1;min-width:160px;font-size:12px;color:var(--muted);font-style:italic;" onkeydown="if(event.key==='Enter')addTask('${k}')">
+    <button class="add-task-btn" onclick="addTask('${k}')">+ Add</button>
+  </div>`;
+
+  body.innerHTML=bodyHtml;
 }
 function updateTaskStatus(k,id,sel){
   const task=plannerWeekData[k]?.find(t=>t.id===id);
   if(!task)return;task.status=sel.value;
-  savePlannerWeek(plannerWeekStart,plannerWeekData);renderDays();
+  savePlannerWeek(plannerWeekStart,plannerWeekData);refreshDayBlock(k);
 }
 function deleteTask(k,id){
   if(!plannerWeekData[k])return;
   plannerWeekData[k]=plannerWeekData[k].filter(t=>t.id!==id);
-  savePlannerWeek(plannerWeekStart,plannerWeekData);renderDays();
+  savePlannerWeek(plannerWeekStart,plannerWeekData);refreshDayBlock(k);
 }
 function addParking(){
   const input=document.getElementById('parkingInput');
@@ -864,6 +1075,7 @@ function loadBrandPosts(id){return ls(bsk(id))||[];}
 function saveBrandPosts(id,posts){lsSet(bsk(id),posts);gasWrite('brands',id,posts);}
 
 function initBrands(){
+  loadCustomBrands();
   seedBrandData();
   renderBrandTabs();
   renderBrandsMain();
@@ -881,7 +1093,8 @@ function renderBrandTabs(){
   el.innerHTML=BRANDS.map(b=>`
     <button class="brand-stab ${currentBrand===b.id?'active-'+b.id:''}" style="${currentBrand===b.id?'border-bottom-color:'+b.color+';color:'+b.color+'55;filter:brightness(1.8);':''}" onclick="switchBrand('${b.id}')">
       <span class="brand-stab-dot" style="background:${b.color}"></span>${b.name}
-    </button>`).join('');
+    </button>`).join('') +
+    `<button class="brand-stab" style="margin-left:auto;color:#444;border-bottom:none;" onclick="openAddBrand()">+ Add Brand</button>`;
 }
 function switchBrand(id){
   currentBrand=id;
@@ -897,14 +1110,12 @@ function renderBrandsMain(){
   const view=brandViews[currentBrand];
   const posts=loadBrandPosts(currentBrand);
   const isProd=b.type==='production';
-  const toggleHtml=isProd?`<div class="toggle-grp"><button class="toggle-btn ${view==='production'?'active':''}" onclick="setBrandView('production')">Reel Table</button><button class="toggle-btn ${view==='calendar'?'active':''}" onclick="setBrandView('calendar')">Calendar</button></div>`:'';
+  const toggleHtml=`<div class="toggle-grp"><button class="toggle-btn ${view==='calendar'?'active':''}" onclick="setBrandView('calendar')">Calendar</button><button class="toggle-btn ${view==='production'?'active':''}" onclick="setBrandView('production')">Reel Table</button></div>`;
   el.innerHTML=`
     <div class="brand-meta">
       <div class="meta-acc" style="background:${b.color}"></div>
       <div class="meta-in">
         <div class="meta-name">${b.name}</div>
-        <div class="meta-field"><div class="meta-lbl">Retainer</div><div class="meta-val">${b.retainer}</div></div>
-        <div class="meta-field"><div class="meta-lbl">Volume</div><div class="meta-val">${b.posts}</div></div>
         <div class="meta-field"><div class="meta-lbl">Status</div><div class="meta-val"><span class="${b.status==='active'?'sbadge-active':'sbadge-paused'}">${b.status==='active'?'● Active':'◌ Paused'}</span></div></div>
       </div>
     </div>
@@ -915,6 +1126,8 @@ function renderBrandsMain(){
       <button class="mo-btn" onclick="bGoToday()">Today</button>
       <button class="mo-btn" onclick="bNextMonth()">Next →</button>
       <button class="add-brand-btn" style="background:${b.color}" onclick="openBrandAdd(null)">+ Add</button>
+      <button class="report-btn" onclick="openReport('${b.id}')">Monthly Report</button>
+      <button class="mo-btn" style="color:#B91C1C;border-color:#FFE5E5;" onclick="deleteBrand('${b.id}')">Delete Brand</button>
     </div>
     ${view==='production'?renderProdTable(b,posts):renderBrandCal(b,posts)}
     ${view==='calendar'?renderListView(b,posts):''}`;
@@ -992,7 +1205,7 @@ function renderListView(b,posts){
 
 function brandModalBody(p,isProd){
   const dateVal=p?p.date||'':'';
-  const statOpts=['idea','scripted','filming','editing','review','approved','scheduled','posted'].map(s=>`<option value="${s}" ${p&&p.status===s?'selected':''}>${statusLbl(s)}</option>`).join('');
+  const statOpts=['idea','filming','editing','review','blocked','approved','posted'].map(s=>`<option value="${s}" ${p&&p.status===s?'selected':''}>${statusLbl(s)}</option>`).join('');
   const platOpts=['Instagram Reel','Instagram Story','Instagram Post','Instagram Carousel','TikTok','YouTube','YouTube Short','LinkedIn','Multiple'].map(o=>`<option ${p&&p.platform===o?'selected':''}>${o}</option>`).join('');
   if(isProd)return `
     <div class="fg"><label class="flbl">Reel #</label><input class="fi" id="f-rn" value="${esc(p?p.reelNum||'':'')}"></div>
@@ -1001,12 +1214,34 @@ function brandModalBody(p,isProd){
     <div class="fg"><label class="flbl">Caption</label><textarea class="fta" id="f-caption">${esc(p?p.caption||'':'')}</textarea></div>
     <div class="frow"><div class="fg"><label class="flbl">Sonic Identity</label><input class="fi" id="f-sonic" value="${esc(p?p.sonic||''||'':'')}"></div><div class="fg"><label class="flbl">Reference Link</label><input class="fi" id="f-ref" value="${esc(p?p.ref||'':'')}"></div></div>
     <div class="frow"><div class="fg"><label class="flbl">Status</label><select class="fs" id="f-stat">${statOpts}</select></div><div class="fg"><label class="flbl">Drop Date</label><input type="date" class="fi" id="f-date" value="${dateVal}"></div></div>
-    <div class="fg"><label class="flbl">Platform</label><select class="fs" id="f-plat">${platOpts}</select></div>`;
+    <div class="fg"><label class="flbl">Platform</label><select class="fs" id="f-plat">${platOpts}</select></div>
+    ${p&&p.status==='posted'?`<div style="border-top:1px dashed var(--rule);margin-top:4px;padding-top:14px;">
+      <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:12px;">Post Stats</div>
+      <div class="frow">
+        <div class="fg"><label class="flbl">Views</label><input class="fi" id="f-views" type="number" placeholder="0" value="${esc(String(p.views||''))}"></div>
+        <div class="fg"><label class="flbl">Shares</label><input class="fi" id="f-shares" type="number" placeholder="0" value="${esc(String(p.shares||''))}"></div>
+      </div>
+      <div class="frow">
+        <div class="fg"><label class="flbl">Comments</label><input class="fi" id="f-comments" type="number" placeholder="0" value="${esc(String(p.comments||''))}"></div>
+        <div class="fg"><label class="flbl">Saves</label><input class="fi" id="f-saves" type="number" placeholder="0" value="${esc(String(p.saves||''))}"></div>
+      </div>
+    </div>`:''}`;
   return `
     <div class="fg"><label class="flbl">Post Title / Topic</label><input class="fi" id="f-title" value="${esc(p?p.title:'')}"></div>
     <div class="frow"><div class="fg"><label class="flbl">Platform</label><select class="fs" id="f-plat">${platOpts}</select></div><div class="fg"><label class="flbl">Status</label><select class="fs" id="f-stat">${statOpts}</select></div></div>
     <div class="fg"><label class="flbl">Drop Date</label><input type="date" class="fi" id="f-date" value="${dateVal}"></div>
-    <div class="fg"><label class="flbl">Notes / Brief</label><textarea class="fta" id="f-notes">${esc(p?p.notes||'':'')}</textarea></div>`;
+    <div class="fg"><label class="flbl">Notes / Brief</label><textarea class="fta" id="f-notes">${esc(p?p.notes||'':'')}</textarea></div>
+    ${p&&p.status==='posted'?`<div style="border-top:1px dashed var(--rule);margin-top:4px;padding-top:14px;">
+      <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:12px;">Post Stats</div>
+      <div class="frow">
+        <div class="fg"><label class="flbl">Views</label><input class="fi" id="f-views" type="number" placeholder="0" value="${esc(String(p.views||''))}"></div>
+        <div class="fg"><label class="flbl">Shares</label><input class="fi" id="f-shares" type="number" placeholder="0" value="${esc(String(p.shares||''))}"></div>
+      </div>
+      <div class="frow">
+        <div class="fg"><label class="flbl">Comments</label><input class="fi" id="f-comments" type="number" placeholder="0" value="${esc(String(p.comments||''))}"></div>
+        <div class="fg"><label class="flbl">Saves</label><input class="fi" id="f-saves" type="number" placeholder="0" value="${esc(String(p.saves||''))}"></div>
+      </div>
+    </div>`:''}`;
 }
 function openBrandAdd(dateIso,e){
   if(e)e.stopPropagation();editId=null;editDate=dateIso;editBrand=currentBrand;
@@ -1037,11 +1272,21 @@ function saveBrandPost(){
   if(isProd){
     const hook=(document.getElementById('f-hook')||{}).value||'';
     if(!hook.trim()){document.getElementById('f-hook').focus();return;}
-    data={title:hook,hook,reelNum:(document.getElementById('f-rn')||{}).value||'',visual:(document.getElementById('f-visual')||{}).value||'',caption:(document.getElementById('f-caption')||{}).value||'',sonic:(document.getElementById('f-sonic')||{}).value||'',ref:(document.getElementById('f-ref')||{}).value||'',platform:(document.getElementById('f-plat')||{}).value||'Instagram Reel',status:(document.getElementById('f-stat')||{}).value||'idea',date:(document.getElementById('f-date')||{}).value||null,notes:''};
+    const prodStatus=(document.getElementById('f-stat')||{}).value||'idea';
+    data={title:hook,hook,reelNum:(document.getElementById('f-rn')||{}).value||'',visual:(document.getElementById('f-visual')||{}).value||'',caption:(document.getElementById('f-caption')||{}).value||'',sonic:(document.getElementById('f-sonic')||{}).value||'',ref:(document.getElementById('f-ref')||{}).value||'',platform:(document.getElementById('f-plat')||{}).value||'Instagram Reel',status:prodStatus,date:(document.getElementById('f-date')||{}).value||null,notes:'',
+    views:prodStatus==='posted'?parseInt((document.getElementById('f-views')||{}).value||'0')||0:undefined,
+    shares:prodStatus==='posted'?parseInt((document.getElementById('f-shares')||{}).value||'0')||0:undefined,
+    comments:prodStatus==='posted'?parseInt((document.getElementById('f-comments')||{}).value||'0')||0:undefined,
+    saves:prodStatus==='posted'?parseInt((document.getElementById('f-saves')||{}).value||'0')||0:undefined,};
   }else{
     const title=(document.getElementById('f-title')||{}).value||'';
     if(!title.trim()){document.getElementById('f-title').focus();return;}
-    data={title,platform:(document.getElementById('f-plat')||{}).value||'Instagram Reel',status:(document.getElementById('f-stat')||{}).value||'idea',date:(document.getElementById('f-date')||{}).value||null,notes:(document.getElementById('f-notes')||{}).value||''};
+    const calStatus=(document.getElementById('f-stat')||{}).value||'idea';
+    data={title,platform:(document.getElementById('f-plat')||{}).value||'Instagram Reel',status:calStatus,date:(document.getElementById('f-date')||{}).value||null,notes:(document.getElementById('f-notes')||{}).value||'',
+    views:calStatus==='posted'?parseInt((document.getElementById('f-views')||{}).value||'0')||0:undefined,
+    shares:calStatus==='posted'?parseInt((document.getElementById('f-shares')||{}).value||'0')||0:undefined,
+    comments:calStatus==='posted'?parseInt((document.getElementById('f-comments')||{}).value||'0')||0:undefined,
+    saves:calStatus==='posted'?parseInt((document.getElementById('f-saves')||{}).value||'0')||0:undefined,};
   }
   if(editId){const idx=posts.findIndex(x=>x.id===editId);if(idx!==-1)posts[idx]={...posts[idx],...data};}
   else posts.push({id:uid(),...data});
@@ -1100,6 +1345,11 @@ function renderBank(){
     const mf=bankFilter==='all'||i.status===bankFilter;
     const mq=!q||(i.title+i.hook+i.caption+i.series+i.notes).toLowerCase().includes(q.toLowerCase());
     return mf&&mq;
+  }).reverse().sort((a,b)=>{
+    // Posted always sinks to bottom, everything else keeps newest-first order
+    const aPosted=a.status==='📱 Posted'?1:0;
+    const bPosted=b.status==='📱 Posted'?1:0;
+    return aPosted-bPosted;
   });
   const el=document.getElementById('ideasGrid');if(!el)return;
   if(!filtered.length){el.innerHTML='<div style="grid-column:1/-1;padding:40px;text-align:center;font-size:13px;color:var(--warm);font-style:italic;">No ideas match</div>';return;}
@@ -1238,6 +1488,213 @@ function promptGasUrl(){
   if(url&&url.startsWith('https://')){GAS_URL=url;localStorage.setItem('fi_gas_url',url);}
 }
 
+
+// ── MONTHLY REPORT ──
+function openReport(brandId){
+  const b=BRANDS.find(x=>x.id===brandId);
+  if(!b)return;
+  const posts=loadBrandPosts(brandId);
+  const now=new Date();
+
+  // Build month selector options - last 6 months
+  let monthOpts='';
+  for(let i=0;i<6;i++){
+    const d=new Date(now.getFullYear(),now.getMonth()-i,1);
+    const val=d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0');
+    const lbl=MFL[d.getMonth()]+' '+d.getFullYear();
+    monthOpts+=`<option value="${val}" ${i===1?'selected':''}>${lbl}</option>`;
+  }
+
+  document.getElementById('modalTitle').textContent=b.name+' — Monthly Report';
+  document.getElementById('modalBox').style.borderTopColor=b.color;
+  document.getElementById('modalBox').style.width='680px';
+  document.getElementById('modalBody').innerHTML=`
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;">
+      <div style="flex:1;">
+        <label class="flbl">Report Month</label>
+        <select class="fs" id="report-month" onchange="renderReportPreview('${brandId}')" style="max-width:200px;">${monthOpts}</select>
+      </div>
+      <button class="report-btn" onclick="downloadReportHTML('${brandId}')">Download HTML</button>
+      <button class="report-btn" style="background:var(--rose);color:#fff;" onclick="printReport()">Print / PDF</button>
+    </div>
+    <div id="reportPreview" style="border:1px solid var(--rule);border-radius:2px;overflow:hidden;"></div>`;
+  document.getElementById('modalActs').innerHTML=`<button class="btn-c" onclick="closeModal();document.getElementById('modalBox').style.width='';">Close</button>`;
+  document.getElementById('overlay').classList.add('open');
+  setTimeout(()=>renderReportPreview(brandId),50);
+}
+
+function getReportData(brandId, monthVal){
+  const posts=loadBrandPosts(brandId);
+  const [yr,mo]=monthVal.split('-').map(Number);
+  const monthPosts=posts.filter(p=>{
+    if(!p.date)return false;
+    const d=new Date(p.date);
+    return d.getFullYear()===yr&&d.getMonth()===(mo-1);
+  }).sort((a,c)=>a.date.localeCompare(c.date));
+
+  const posted=monthPosts.filter(p=>p.status==='posted');
+  const totViews=posted.reduce((s,p)=>s+(p.views||0),0);
+  const totShares=posted.reduce((s,p)=>s+(p.shares||0),0);
+  const totComments=posted.reduce((s,p)=>s+(p.comments||0),0);
+  const totSaves=posted.reduce((s,p)=>s+(p.saves||0),0);
+
+  return{monthPosts,posted,totViews,totShares,totComments,totSaves,yr,mo};
+}
+
+function fmtNum(n){if(!n)return'—';if(n>=1000000)return(n/1000000).toFixed(1)+'M';if(n>=1000)return(n/1000).toFixed(1)+'K';return String(n);}
+
+function renderReportPreview(brandId){
+  const b=BRANDS.find(x=>x.id===brandId);
+  const monthVal=document.getElementById('report-month')?.value;
+  if(!monthVal)return;
+  const{monthPosts,posted,totViews,totShares,totComments,totSaves,yr,mo}=getReportData(brandId,monthVal);
+  const period=MFL[mo-1]+' '+yr;
+
+  const postRows=monthPosts.map(p=>`
+    <div class="report-post-row">
+      <div><div class="rpr-title">${esc(p.title)}</div><div class="rpr-plat">${p.platform.replace('Instagram ','IG ')}</div></div>
+      <div class="rpr-num ${p.views?'':'zero'}">${fmtNum(p.views)}</div>
+      <div class="rpr-num ${p.shares?'':'zero'}">${fmtNum(p.shares)}</div>
+      <div class="rpr-num ${p.comments?'':'zero'}">${fmtNum(p.comments)}</div>
+      <div class="rpr-num ${p.saves?'':'zero'}">${fmtNum(p.saves)}</div>
+      <div style="text-align:center;"><span class="sp sp-${p.status}">${statusLbl(p.status)}</span></div>
+    </div>`).join('');
+
+  document.getElementById('reportPreview').innerHTML=buildReportHTML(b,period,posted.length,monthPosts.length,totViews,totShares,totComments,totSaves,postRows);
+}
+
+function buildReportHTML(b,period,postedCount,totalCount,totViews,totShares,totComments,totSaves,postRows){
+  return `<div class="report-wrap">
+    <div class="report-hdr-block" style="background:${b.color};">
+      <div style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:8px;">Flush It — Monthly Report</div>
+      <div class="report-brand-name">${b.name}</div>
+      <div class="report-period">${period} · ${postedCount} of ${totalCount} posts live</div>
+    </div>
+    <div class="report-summary">
+      <div class="report-stat-box"><div class="rsb-label">Total Views</div><div class="rsb-value">${fmtNum(totViews)||'—'}</div></div>
+      <div class="report-stat-box"><div class="rsb-label">Total Shares</div><div class="rsb-value">${fmtNum(totShares)||'—'}</div></div>
+      <div class="report-stat-box"><div class="rsb-label">Total Comments</div><div class="rsb-value">${fmtNum(totComments)||'—'}</div></div>
+      <div class="report-stat-box"><div class="rsb-label">Total Saves</div><div class="rsb-value">${fmtNum(totSaves)||'—'}</div></div>
+    </div>
+    <div class="report-posts-section">
+      <div class="report-post-hdr">
+        <div class="rph-cell left">Post</div>
+        <div class="rph-cell">Views</div>
+        <div class="rph-cell">Shares</div>
+        <div class="rph-cell">Comments</div>
+        <div class="rph-cell">Saves</div>
+        <div class="rph-cell">Status</div>
+      </div>
+      ${postRows||'<div style="padding:24px;text-align:center;font-size:13px;color:var(--muted);font-style:italic;">No posts for this month yet</div>'}
+    </div>
+  </div>`;
+}
+
+function downloadReportHTML(brandId){
+  const b=BRANDS.find(x=>x.id===brandId);
+  const monthVal=document.getElementById('report-month')?.value;
+  if(!monthVal)return;
+  const{monthPosts,posted,totViews,totShares,totComments,totSaves,yr,mo}=getReportData(brandId,monthVal);
+  const period=MFL[mo-1]+' '+yr;
+  const postRows=monthPosts.map(p=>`
+    <div class="report-post-row">
+      <div><div class="rpr-title">${esc(p.title)}</div><div class="rpr-plat">${p.platform.replace('Instagram ','IG ')}</div></div>
+      <div class="rpr-num">${fmtNum(p.views)}</div>
+      <div class="rpr-num">${fmtNum(p.shares)}</div>
+      <div class="rpr-num">${fmtNum(p.comments)}</div>
+      <div class="rpr-num">${fmtNum(p.saves)}</div>
+      <div style="text-align:center;">${statusLbl(p.status)}</div>
+    </div>`).join('');
+
+  const fullHTML=`<!DOCTYPE html><html><head><meta charset="UTF-8">
+<title>${b.name} — ${period} Report</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'DM Sans',sans-serif;background:#F5F0E6;color:#1A1714;min-height:100vh;}
+.report-hdr-block{padding:40px 48px;border-bottom:3px solid rgba(255,255,255,.3);}
+.report-brand-name{font-family:'Syne',sans-serif;font-weight:800;font-size:36px;color:#fff;margin-bottom:6px;}
+.report-period{font-family:'DM Mono',monospace;font-size:11px;color:rgba(255,255,255,.6);letter-spacing:.12em;text-transform:uppercase;}
+.report-summary{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#E5DDD3;}
+.report-stat-box{background:#fff;padding:24px 28px;}
+.rsb-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:#8C8476;margin-bottom:8px;}
+.rsb-value{font-family:'Syne',sans-serif;font-weight:800;font-size:32px;color:#1A1714;line-height:1;}
+.report-posts-section{padding:28px 48px 48px;background:#fff;margin:24px;border-radius:2px;border:1px solid #E5DDD3;}
+.report-post-hdr{display:grid;grid-template-columns:1fr 80px 80px 80px 80px 100px;padding:8px 0;border-bottom:2px solid #1A1714;margin-bottom:4px;}
+.rph-cell{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:#8C8476;text-align:center;}
+.rph-cell.left{text-align:left;}
+.report-post-row{display:grid;grid-template-columns:1fr 80px 80px 80px 80px 100px;padding:12px 0;border-bottom:1px solid #E5DDD3;align-items:center;}
+.report-post-row:last-child{border-bottom:none;}
+.rpr-title{font-size:13px;font-weight:500;color:#1A1714;padding-right:12px;}
+.rpr-plat{font-family:'DM Mono',monospace;font-size:10px;color:#8C8476;margin-top:2px;}
+.rpr-num{font-family:'DM Mono',monospace;font-size:12px;color:#3D3830;text-align:center;}
+.flush-footer{text-align:center;padding:32px;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#8C8476;}
+</style></head><body>
+<div class="report-hdr-block" style="background:${b.color};">
+  <div style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:8px;">Flush It — Monthly Report</div>
+  <div class="report-brand-name">${b.name}</div>
+  <div class="report-period">${period} · ${posted.length} of ${monthPosts.length} posts live</div>
+</div>
+<div class="report-summary">
+  <div class="report-stat-box"><div class="rsb-label">Total Views</div><div class="rsb-value">${fmtNum(totViews)||'—'}</div></div>
+  <div class="report-stat-box"><div class="rsb-label">Total Shares</div><div class="rsb-value">${fmtNum(totShares)||'—'}</div></div>
+  <div class="report-stat-box"><div class="rsb-label">Total Comments</div><div class="rsb-value">${fmtNum(totComments)||'—'}</div></div>
+  <div class="report-stat-box"><div class="rsb-label">Total Saves</div><div class="rsb-value">${fmtNum(totSaves)||'—'}</div></div>
+</div>
+<div style="padding:24px 48px 0;">
+  <div class="report-posts-section">
+    <div class="report-post-hdr">
+      <div class="rph-cell left">Post</div>
+      <div class="rph-cell">Views</div>
+      <div class="rph-cell">Shares</div>
+      <div class="rph-cell">Comments</div>
+      <div class="rph-cell">Saves</div>
+      <div class="rph-cell">Status</div>
+    </div>
+    ${postRows||'<div style="padding:24px;text-align:center;font-size:13px;color:#8C8476;font-style:italic;">No posts for this month</div>'}
+  </div>
+</div>
+<div class="flush-footer">Flush It — Creative House · ${period} · Generated ${new Date().toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'})}</div>
+</body></html>`;
+
+  const blob=new Blob([fullHTML],{type:'text/html'});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');
+  a.href=url;
+  a.download=b.name.replace(/\s+/g,'_')+'_'+monthVal+'_Report.html';
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+function printReport(){
+  const preview=document.getElementById('reportPreview');
+  if(!preview)return;
+  const w=window.open('','_blank');
+  w.document.write('<html><head><title>Report</title><link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"><style>'+
+    '*{box-sizing:border-box;margin:0;padding:0;}body{font-family:DM Sans,sans-serif;}'+
+    document.querySelector('style').textContent+
+    '</style></head><body>'+preview.innerHTML+'</body></html>');
+  w.document.close();
+  setTimeout(()=>{w.print();},800);
+}
+
+function deleteBrand(id){
+  const b=BRANDS.find(x=>x.id===id);
+  if(!b)return;
+  if(!confirm('Delete '+b.name+' and all its posts? This cannot be undone.'))return;
+  const idx=BRANDS.findIndex(x=>x.id===id);
+  if(idx!==-1)BRANDS.splice(idx,1);
+  localStorage.removeItem('fi_brand_'+id);
+  saveCustomBrands();
+  // Also track deleted defaults so they don't re-seed
+  const deletedDefaults=JSON.parse(localStorage.getItem('fi_deleted_defaults')||'[]');
+  if(!deletedDefaults.includes(id)){deletedDefaults.push(id);localStorage.setItem('fi_deleted_defaults',JSON.stringify(deletedDefaults));}
+  // Switch to first remaining brand
+  currentBrand=BRANDS.length>0?BRANDS[0].id:'';
+  if(currentBrand){renderBrandTabs();renderBrandsMain();}
+  else{document.getElementById('brandSubtabs').innerHTML='<button class="brand-stab" style="margin-left:auto;color:#444;border-bottom:none;" onclick="openAddBrand()">+ Add Brand</button>';document.getElementById('brandsMain').innerHTML='<div class="empty-brands" style="padding:60px;text-align:center;">No brands yet — add one above</div>';}
+}
+
 // ── MODAL ──
 function closeModal(){document.getElementById('overlay').classList.remove('open');}
 function handleOverlay(e){if(e.target===document.getElementById('overlay'))closeModal();}
@@ -1245,7 +1702,7 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
 
 // ── HELPERS ──
 function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
-function statusLbl(s){return{idea:'Idea',scripted:'Scripted',filming:'Filming',editing:'Editing',review:'In Review',approved:'Approved',scheduled:'Scheduled',posted:'Posted ✓'}[s]||s;}
+function statusLbl(s){return{idea:'Idea',filming:'Filming',editing:'Editing',review:'In Review',blocked:'Blocked',approved:'Approved',posted:'Posted ✓'}[s]||s;}
 function hexLt(hex){const m={'#3D5A80':'#EAF0F8','#C8380A':'#FDF0EB','#5E35B1':'#F0EAFD','#2E7D32':'#EBF5EC','#00796B':'#E0F4F1','#8B5E3C':'#FDF5EE'};return m[hex]||'#F5F0E6';}
 
 // ── BRAND SEED DATA ──
@@ -1276,7 +1733,7 @@ function seedBrandData(){
       {id:uid(),date:d(6),title:'Spring Campaign Hero Reel',platform:'Instagram Reel',status:'editing',notes:'Hero reel for new collection'},
       {id:uid(),date:d(12),title:'BTS Shoot Day',platform:'Instagram Story',status:'posted',notes:''},
       {id:uid(),date:d(19),title:'Product Focus — Bags',platform:'Instagram Post',status:'idea',notes:'Clean product on white'},
-      {id:uid(),date:d(26),title:'Client Testimonial',platform:'Instagram Reel',status:'scripted',notes:''},
+      {id:uid(),date:d(26),title:'Client Testimonial',platform:'Instagram Reel',status:'idea',notes:''},
     ],
     oraan:[
       {id:uid(),date:d(8),title:'App Demo — Savings Flow',platform:'Instagram Reel',status:'approved',notes:'Show app flow clearly'},
@@ -1288,12 +1745,13 @@ function seedBrandData(){
       {id:uid(),date:d(5),title:'Talking Head Reel',platform:'Instagram Reel',status:'posted',notes:''},
       {id:uid(),date:d(9),title:'Car POV Reel',platform:'TikTok',status:'editing',notes:''},
       {id:uid(),date:d(12),title:'Street Food Reel',platform:'Instagram Reel',status:'review',notes:''},
-      {id:uid(),date:d(16),title:'Weekly Vlog',platform:'YouTube',status:'scripted',notes:''},
+      {id:uid(),date:d(16),title:'Weekly Vlog',platform:'YouTube',status:'idea',notes:''},
       {id:uid(),date:d(19),title:'Reaction Reel',platform:'Instagram Reel',status:'idea',notes:''},
     ],
     safepay:[],
   };
-  BRANDS.forEach(b=>{if(loadBrandPosts(b.id).length===0&&seeds[b.id])saveBrandPosts(b.id,seeds[b.id]);});
+  const deletedDefaults=JSON.parse(localStorage.getItem('fi_deleted_defaults')||'[]');
+  BRANDS.forEach(b=>{if(!deletedDefaults.includes(b.id)&&loadBrandPosts(b.id).length===0&&seeds[b.id])saveBrandPosts(b.id,seeds[b.id]);});
 }
 
 // ── INIT ──
