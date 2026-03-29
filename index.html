@@ -246,6 +246,47 @@ body{font-family:'DM Sans',sans-serif;color:var(--ink);min-height:100vh;backgrou
 .beb-tab:hover{color:rgba(255,255,255,.6);}
 .beb-tab.active{color:var(--amber-mid);border-bottom-color:var(--amber-mid);}
 .beb-pane{display:none;} .beb-pane.active{display:block;}
+/* ── THINKER ── */
+.thinker-wrap{max-width:900px;margin:0 auto;padding:44px 40px 70px;}
+.thinker-key-row{display:flex;align-items:center;gap:10px;margin-bottom:28px;padding:16px 20px;background:var(--amber-lt);border:1.5px solid var(--amber-mid);border-radius:10px;}
+.thinker-key-row.hidden{display:none;}
+.thinker-key-lbl{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--amber);white-space:nowrap;}
+.thinker-key-inp{flex:1;font-family:'DM Mono',monospace;font-size:12px;background:#fff;border:1px solid var(--amber-mid);border-radius:6px;padding:8px 12px;color:var(--ink);outline:none;}
+.thinker-key-inp:focus{border-color:var(--amber);}
+.thinker-key-btn{font-family:'DM Mono',monospace;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:8px 16px;border:none;border-radius:6px;background:var(--amber);color:#fff;cursor:pointer;}
+.thinker-key-btn:hover{background:#A86008;}
+.thinker-key-err{font-size:11px;color:var(--red,#c0392b);margin-left:4px;}
+.thinker-change-key{font-family:'DM Mono',monospace;font-size:10px;color:var(--warm);text-decoration:underline;cursor:pointer;background:none;border:none;padding:0;margin-left:auto;}
+.thinker-controls{display:flex;flex-direction:column;gap:12px;margin-bottom:32px;}
+.thinker-pills{display:flex;flex-wrap:wrap;gap:6px;}
+.thinker-pill{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:7px 14px;border:1.5px solid var(--rule);border-radius:100px;background:#fff;color:var(--warm);cursor:pointer;transition:all .15s;}
+.thinker-pill:hover{border-color:var(--amber-mid);color:var(--amber);}
+.thinker-pill.active{background:var(--amber);border-color:var(--amber);color:#fff;}
+.thinker-seed-row{display:flex;gap:10px;}
+.thinker-seed-inp{flex:1;font-family:'DM Sans',sans-serif;font-size:13px;background:#fff;border:1.5px solid var(--rule);border-radius:10px;padding:11px 16px;color:var(--ink);outline:none;transition:border-color .15s;}
+.thinker-seed-inp:focus{border-color:var(--amber-mid);}
+.thinker-gen-btn{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:11px 24px;border:none;border-radius:10px;background:var(--amber);color:#fff;cursor:pointer;transition:all .15s;white-space:nowrap;}
+.thinker-gen-btn:hover:not(:disabled){background:#A86008;}
+.thinker-gen-btn:disabled{opacity:.45;cursor:not-allowed;}
+.thinker-results{min-height:120px;}
+.thinker-empty{font-family:'DM Mono',monospace;font-size:12px;color:var(--warm);text-align:center;padding:60px 0;letter-spacing:.06em;}
+.thinker-loading{font-family:'Playfair Display',serif;font-size:18px;color:var(--amber);text-align:center;padding:60px 0;animation:thinkerPulse 1.4s ease-in-out infinite;}
+@keyframes thinkerPulse{0%,100%{opacity:.4;}50%{opacity:1;}}
+.thinker-error{text-align:center;padding:40px 0;}
+.thinker-error-msg{font-size:13px;color:var(--ink);margin-bottom:14px;}
+.thinker-retry-btn{font-family:'DM Mono',monospace;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:8px 18px;border:1.5px solid var(--amber-mid);border-radius:8px;background:#fff;color:var(--amber);cursor:pointer;}
+.thinker-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px;}
+.thinker-card{background:#fff;border-radius:12px;border:1.5px solid var(--rule);overflow:hidden;display:flex;flex-direction:column;}
+.thinker-card-top{padding:16px 18px 12px;border-bottom:1px solid var(--rule);flex:1;}
+.thinker-card-series{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--warm);margin-bottom:6px;}
+.thinker-card-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:var(--ink);line-height:1.3;margin-bottom:6px;}
+.thinker-card-hook{font-size:11px;color:var(--warm);font-style:italic;line-height:1.5;margin-bottom:8px;}
+.thinker-card-field{font-size:11px;color:var(--ink);line-height:1.5;margin-bottom:4px;}
+.thinker-card-field strong{color:var(--warm);font-weight:600;}
+.thinker-card-footer{padding:10px 18px 14px;}
+.thinker-save-btn{width:100%;font-family:'DM Mono',monospace;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:9px;border:none;border-radius:8px;background:var(--amber);color:#fff;cursor:pointer;transition:all .15s;}
+.thinker-save-btn:hover:not(:disabled){background:#A86008;}
+.thinker-save-btn:disabled{background:var(--green,#1B4332);color:#fff;cursor:default;opacity:.8;}
 .beb-main{max-width:1100px;margin:0 auto;padding:44px 40px 70px;}
 .sec-lbl{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--warm);margin-bottom:18px;display:flex;align-items:center;gap:10px;}
 .sec-lbl::after{content:'';flex:1;height:1px;background:var(--rule);}
@@ -494,6 +535,7 @@ body{font-family:'DM Sans',sans-serif;color:var(--ink);min-height:100vh;backgrou
       <button class="beb-tab active" onclick="switchBebTab('guide',this)">The Guide</button>
       <button class="beb-tab" onclick="switchBebTab('bank',this)">Content Bank</button>
       <button class="beb-tab" onclick="switchBebTab('capture',this)">Capture Board</button>
+      <button class="beb-tab" onclick="switchBebTab('thinker',this)">Thinker</button>
     </div>
     <div class="beb-pane active" id="beb-guide">
       <div class="beb-main">
@@ -574,6 +616,46 @@ body{font-family:'DM Sans',sans-serif;color:var(--ink);min-height:100vh;backgrou
             <div class="cap-input-row"><input class="cap-inp" id="ci-notes" placeholder="Reminder, brief, follow-up..." onkeydown="if(event.key==='Enter')addCap('notes')"><button class="cap-sub" onclick="addCap('notes')">Add</button></div>
           </div>
         </div>
+      </div>
+    </div>
+    <div class="beb-pane" id="beb-thinker">
+      <div class="thinker-wrap">
+
+        <!-- API Key Row -->
+        <div class="thinker-key-row hidden" id="thinkerKeyRow">
+          <span class="thinker-key-lbl">API Key</span>
+          <input class="thinker-key-inp" id="thinkerKeyInp" type="password" placeholder="sk-ant-...">
+          <button class="thinker-key-btn" onclick="saveThinkerKey()">Save</button>
+          <span class="thinker-key-err" id="thinkerKeyErr"></span>
+        </div>
+
+        <!-- Controls -->
+        <div class="thinker-controls">
+          <div class="thinker-pills" id="thinkerPills">
+            <button class="thinker-pill active" data-pillar="Surprise Me" onclick="selectThinkerPill(this)">Surprise Me</button>
+            <button class="thinker-pill" data-pillar="People" onclick="selectThinkerPill(this)">People</button>
+            <button class="thinker-pill" data-pillar="My World" onclick="selectThinkerPill(this)">My World</button>
+            <button class="thinker-pill" data-pillar="Meaningful" onclick="selectThinkerPill(this)">Meaningful</button>
+            <button class="thinker-pill" data-pillar="Bebatzai Talks" onclick="selectThinkerPill(this)">Bebatzai Talks</button>
+            <button class="thinker-pill" data-pillar="Ammi Series" onclick="selectThinkerPill(this)">Ammi Series</button>
+            <button class="thinker-pill" data-pillar="Ramadan/Eid" onclick="selectThinkerPill(this)">Ramadan/Eid</button>
+          </div>
+          <div class="thinker-seed-row">
+            <input class="thinker-seed-inp" id="thinkerSeed" placeholder="Type a thought, scene, or feeling... (optional)">
+            <button class="thinker-gen-btn" id="thinkerGenBtn" onclick="generateThinkerIdeas()">Generate</button>
+          </div>
+        </div>
+
+        <!-- Results -->
+        <div class="thinker-results" id="thinkerResults">
+          <div class="thinker-empty">Pick a pillar and hit Generate</div>
+        </div>
+
+        <!-- Change Key link -->
+        <div style="text-align:right;margin-top:20px;">
+          <button class="thinker-change-key" onclick="showThinkerKeyRow('')">change API key</button>
+        </div>
+
       </div>
     </div>
   </div>
@@ -1459,6 +1541,256 @@ function clearCap(k){if(!confirm('Clear all items?'))return;capSet(k,[]);renderC
 
 function initBebatzai(){initBank();seedCapture();renderBank();CAP_KEYS.forEach(renderCapList);}
 
+// ── THINKER ──
+const BEB_API_KEY_SK = 'beb_api_key';
+const BEB_MODEL = 'claude-haiku-4-5-20251001'; // swap to 'claude-haiku-4-5' if 404
+const BEB_PROXY_URL = null; // null = direct call; set to proxy URL string if CORS issues
+
+let thinkerReady = false;
+let thinkerActivePillar = 'Surprise Me';
+let thinkerLastPillar = 'Surprise Me';
+let thinkerLastSeed = '';
+
+const SERIES_ENUM = [
+  '🌆 Pillar 1 — People',
+  '🌆 Pillar 2 — My World',
+  '💭 Pillar 3 — Meaningful',
+  '💬 Bebatzai Talks',
+  '🤍 Ammi Series',
+  '🌙 Ramadan/Eid Series',
+];
+
+function normaliseSeries(raw) {
+  if (!raw) return SERIES_ENUM[1];
+  const r = raw.toLowerCase();
+  if (r.includes('people')) return SERIES_ENUM[0];
+  if (r.includes('world') || r.includes('my world')) return SERIES_ENUM[1];
+  if (r.includes('meaningful') || r.includes('pillar 3')) return SERIES_ENUM[2];
+  if (r.includes('bebatzai talks') || r.includes('talks')) return SERIES_ENUM[3];
+  if (r.includes('ammi')) return SERIES_ENUM[4];
+  if (r.includes('ramadan') || r.includes('eid')) return SERIES_ENUM[5];
+  return SERIES_ENUM[1]; // fallback
+}
+
+function maybeInitThinker() {
+  if (thinkerReady) return;
+  if (!localStorage.getItem(BEB_API_KEY_SK)) showThinkerKeyRow('');
+  const seedInp = document.getElementById('thinkerSeed');
+  if (seedInp) seedInp.addEventListener('keydown', e => { if (e.key === 'Enter') generateThinkerIdeas(); });
+  thinkerReady = true;
+}
+
+function clearThinkerResults() {
+  const el = document.getElementById('thinkerResults');
+  if (el) el.innerHTML = '<div class="thinker-empty">Pick a pillar and hit Generate</div>';
+}
+
+function showThinkerKeyRow(errMsg) {
+  const row = document.getElementById('thinkerKeyRow');
+  const err = document.getElementById('thinkerKeyErr');
+  if (row) row.classList.remove('hidden');
+  if (err) err.textContent = errMsg || '';
+  setThinkerGenEnabled(false);
+}
+
+function hideThinkerKeyRow() {
+  const row = document.getElementById('thinkerKeyRow');
+  if (row) row.classList.add('hidden');
+  setThinkerGenEnabled(true);
+}
+
+function saveThinkerKey() {
+  const val = (document.getElementById('thinkerKeyInp') || {}).value || '';
+  if (!val.trim()) return;
+  localStorage.setItem(BEB_API_KEY_SK, val.trim());
+  document.getElementById('thinkerKeyInp').value = '';
+  hideThinkerKeyRow();
+}
+
+function setThinkerGenEnabled(enabled) {
+  const btn = document.getElementById('thinkerGenBtn');
+  if (btn) btn.disabled = !enabled;
+}
+
+function selectThinkerPill(btn) {
+  document.querySelectorAll('.thinker-pill').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  thinkerActivePillar = btn.dataset.pillar;
+}
+
+const THINKER_SYSTEM = `You are a content idea generator for @bebatzai — Sarosh's personal Instagram account based in Karachi.
+
+ABOUT SAROSH:
+- Runs a marketing agency (Flush It) in Karachi
+- Speaks in a warm Urdu/English mix
+- Authentic, personal, emotionally resonant — not polished or corporate
+- Content rule: "Does this make someone feel curious, warm, seen, or surprised?" — if yes, post it
+
+CONTENT RATIO:
+- 4x Raw & Real: phone in hand, something just happened, point-shoot-trim-post, 20 min max
+- 1x Structured/Edited: has a spine, team edits, series format
+
+PILLARS (use these exact series strings):
+1. "🌆 Pillar 1 — People" — strangers, team members, Karachi encounters. Hook example: "I asked a stranger what he does with his tips. His answer changed my whole day."
+2. "🌆 Pillar 2 — My World" — Karachi moments, food, car thoughts, agency life. Hook example: "Been thinking about this on the drive and had to say it out loud."
+3. "💭 Pillar 3 — Meaningful" — personal stories, agency origin, things that matter. Hook example: "Nobody asked me to start an agency. I did it anyway."
+4. "💬 Bebatzai Talks" — reflective, conversational, Urdu-English mix. Hook example: "Sapne thore chote karleta hu. Ghar pa reh lunga."
+5. "🤍 Ammi Series" — emotional stories with mum, filmed at home, question-led. Hook example: "I asked my mum what she wanted to be at my age. Her answer broke me a little."
+6. "🌙 Ramadan/Eid Series" — seasonal, family, nostalgic. Hook example: "She never sits during Iftar prep. Today I made her."
+
+OUTPUT FORMAT:
+Return ONLY a valid JSON array of exactly 3 objects. No markdown, no explanation, no extra text.
+Each object must have these exact keys: series, title, hook, question, caption, notes
+The "series" field must be exactly one of the 6 strings above.`;
+
+function buildThinkerUserMsg(pillar, seed) {
+  let msg;
+  if (pillar === 'Surprise Me') {
+    msg = 'Generate 3 content ideas — choose any mix of pillars. Make them varied.';
+  } else {
+    const seriesMap = {
+      'People': '🌆 Pillar 1 — People',
+      'My World': '🌆 Pillar 2 — My World',
+      'Meaningful': '💭 Pillar 3 — Meaningful',
+      'Bebatzai Talks': '💬 Bebatzai Talks',
+      'Ammi Series': '🤍 Ammi Series',
+      'Ramadan/Eid': '🌙 Ramadan/Eid Series',
+    };
+    msg = `Generate 3 new content ideas for the "${seriesMap[pillar] || pillar}" pillar.`;
+  }
+  if (seed && seed.trim()) {
+    msg += ` Use this as a starting point or inspiration: ${seed.trim()}`;
+  }
+  return msg;
+}
+
+async function generateThinkerIdeas() {
+  const apiKey = localStorage.getItem(BEB_API_KEY_SK);
+  if (!apiKey) { showThinkerKeyRow(''); return; }
+
+  const seed = (document.getElementById('thinkerSeed') || {}).value || '';
+  thinkerLastPillar = thinkerActivePillar;
+  thinkerLastSeed = seed;
+
+  setThinkerGenEnabled(false);
+  const resultsEl = document.getElementById('thinkerResults');
+  if (resultsEl) resultsEl.innerHTML = '<div class="thinker-loading">Thinking...</div>';
+
+  const url = BEB_PROXY_URL || 'https://api.anthropic.com/v1/messages';
+  const body = {
+    model: BEB_MODEL,
+    max_tokens: 1200,
+    system: THINKER_SYSTEM,
+    messages: [{ role: 'user', content: buildThinkerUserMsg(thinkerActivePillar, seed) }],
+  };
+
+  try {
+    const res = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-api-key': apiKey,
+        'anthropic-version': '2023-06-01',
+        'anthropic-dangerous-allow-browser': 'true',
+      },
+      body: JSON.stringify(body),
+    });
+
+    if (res.status === 401) {
+      showThinkerKeyRow('Invalid or expired API key.');
+      if (resultsEl) resultsEl.innerHTML = '<div class="thinker-empty">Pick a pillar and hit Generate</div>';
+      return;
+    }
+
+    if (!res.ok) {
+      throw new Error(`API error ${res.status}`);
+    }
+
+    const data = await res.json();
+    const raw = (data.content && data.content[0] && data.content[0].text) || '';
+
+    const cleaned = raw.replace(/^```(?:json)?\s*/i, '').replace(/\s*```\s*$/i, '').trim();
+    let ideas;
+    try {
+      ideas = JSON.parse(cleaned);
+    } catch (e) {
+      console.error('Thinker: failed to parse response:', raw);
+      throw new Error('invalid_json');
+    }
+
+    if (!Array.isArray(ideas) || ideas.length !== 3) {
+      console.error('Thinker: unexpected response structure:', ideas);
+      throw new Error('invalid_json');
+    }
+
+    renderThinkerCards(ideas);
+
+  } catch (err) {
+    const isNetwork = err.message !== 'invalid_json';
+    const msg = isNetwork
+      ? "Couldn't reach the API. Check your connection."
+      : "Got an unexpected response. Try generating again.";
+    if (resultsEl) resultsEl.innerHTML = `
+      <div class="thinker-error">
+        <div class="thinker-error-msg">${msg}</div>
+        <button class="thinker-retry-btn" onclick="retryThinker()">Try Again</button>
+      </div>`;
+  } finally {
+    const keyRow = document.getElementById('thinkerKeyRow');
+    if (!keyRow || keyRow.classList.contains('hidden')) {
+      setThinkerGenEnabled(true);
+    }
+  }
+}
+
+function retryThinker() {
+  thinkerActivePillar = thinkerLastPillar;
+  const seed = document.getElementById('thinkerSeed');
+  if (seed) seed.value = thinkerLastSeed;
+  generateThinkerIdeas();
+}
+
+function renderThinkerCards(ideas) {
+  const resultsEl = document.getElementById('thinkerResults');
+  if (!resultsEl) return;
+  resultsEl.innerHTML = `<div class="thinker-cards">${ideas.map((idea, i) => `
+    <div class="thinker-card">
+      <div class="thinker-card-top">
+        <div class="thinker-card-series">${esc(idea.series || '—')}</div>
+        <div class="thinker-card-title">${esc(idea.title || 'Untitled')}</div>
+        ${idea.hook ? `<div class="thinker-card-hook">${esc(idea.hook)}</div>` : ''}
+        ${idea.question ? `<div class="thinker-card-field"><strong>Q:</strong> ${esc(idea.question)}</div>` : ''}
+        ${idea.caption ? `<div class="thinker-card-field"><strong>Caption:</strong> ${esc(idea.caption)}</div>` : ''}
+        ${idea.notes ? `<div class="thinker-card-field"><strong>Notes:</strong> ${esc(idea.notes)}</div>` : ''}
+      </div>
+      <div class="thinker-card-footer">
+        <button class="thinker-save-btn" id="thinkerSave${i}" onclick="saveThinkerIdeaToBank(${i}, this)"
+          data-idea='${JSON.stringify(idea).replace(/'/g, "&#39;")}'>
+          Save to Bank
+        </button>
+      </div>
+    </div>`).join('')}</div>`;
+}
+
+function saveThinkerIdeaToBank(idx, btn) {
+  btn.disabled = true;
+  btn.textContent = 'Saved ✓';
+  const raw = JSON.parse(btn.dataset.idea.replace(/&#39;/g, "'"));
+  const bank = loadBank() || [];
+  bank.push({
+    id: 'IDEA-' + Date.now(),
+    series: normaliseSeries(raw.series),
+    title: raw.title || '',
+    hook: raw.hook || '',
+    question: raw.question || '',
+    caption: raw.caption || '',
+    notes: raw.notes || '',
+    status: '💡 Idea',
+    who: 'You',
+  });
+  saveBank(bank);
+}
+
 function switchBebTab(name,btn){
   document.querySelectorAll('.beb-pane').forEach(p=>p.classList.remove('active'));
   document.querySelectorAll('.beb-tab').forEach(b=>b.classList.remove('active'));
@@ -1466,6 +1798,7 @@ function switchBebTab(name,btn){
   if(btn)btn.classList.add('active');
   if(name==='bank')renderBank();
   if(name==='capture')CAP_KEYS.forEach(renderCapList);
+  if(name==='thinker'){maybeInitThinker();clearThinkerResults();}
 }
 
 // ── OPS HUB ──
