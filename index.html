@@ -827,7 +827,7 @@ async function gasRead(sheet){
   if(!GAS_URL) return null;
   try{
     setSyncStatus('syncing','Syncing...');
-    const res=await fetch(GAS_URL+'?action=read&sheet='+sheet);
+    const res=await fetch(GAS_URL+'?action=read&sheet='+sheet+'&_t='+Date.now());
     const json=await res.json();
     if(json.status==='ok'){setSyncStatus('ok','Synced ✓');return json.data;}
   }catch(e){setSyncStatus('error','Offline — local data');}
@@ -1166,8 +1166,10 @@ async function initBrands(){
       if(data['__deleted']){try{const del=JSON.parse(data['__deleted']);localStorage.setItem('fi_deleted_defaults',JSON.stringify(del));del.forEach(id=>{const idx=BRANDS.findIndex(b=>b.id===id);if(idx!==-1)BRANDS.splice(idx,1);});}catch{}}
       // Apply custom brands from GAS
       if(data['__custom']){try{const custom=JSON.parse(data['__custom']);custom.forEach(b=>{if(!BRANDS.find(x=>x.id===b.id))BRANDS.push(b);});}catch{}}
-      // Apply post data
-      BRANDS.forEach(b=>{if(data[b.id]){try{lsSet(bsk(b.id),JSON.parse(data[b.id]));}catch{}}});
+      // Apply post data — track which brands GAS knows about (even if empty) to skip seeding them
+      const gasKnownBrands=new Set();
+      BRANDS.forEach(b=>{if(b.id in data){gasKnownBrands.add(b.id);try{lsSet(bsk(b.id),JSON.parse(data[b.id]));}catch{}}});
+      window._gasKnownBrands=gasKnownBrands;
     }
   }
   seedBrandData();
@@ -2095,7 +2097,8 @@ function seedBrandData(){
     safepay:[],
   };
   const deletedDefaults=JSON.parse(localStorage.getItem('fi_deleted_defaults')||'[]');
-  BRANDS.forEach(b=>{if(!deletedDefaults.includes(b.id)&&loadBrandPosts(b.id).length===0&&seeds[b.id])saveBrandPosts(b.id,seeds[b.id]);});
+  const knownByGas=window._gasKnownBrands||new Set();
+  BRANDS.forEach(b=>{if(!deletedDefaults.includes(b.id)&&!knownByGas.has(b.id)&&loadBrandPosts(b.id).length===0&&seeds[b.id])saveBrandPosts(b.id,seeds[b.id]);});
 }
 
 // ── INIT ──
