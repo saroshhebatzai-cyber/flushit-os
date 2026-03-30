@@ -718,6 +718,7 @@ function saveCustomBrands(){
   const defaults=['osdo','wingos','oraan','danish','baraatzai','safepay'];
   const custom=BRANDS.filter(b=>!defaults.includes(b.id));
   localStorage.setItem(BRANDS_SK,JSON.stringify(custom));
+  gasWrite('brands','__custom',custom);
 }
 
 const PALETTE=[
@@ -1156,18 +1157,22 @@ function bsk(id){return 'fi_brand_'+id;}
 function loadBrandPosts(id){return ls(bsk(id))||[];}
 function saveBrandPosts(id,posts){lsSet(bsk(id),posts);gasWrite('brands',id,posts);}
 
-function initBrands(){
+async function initBrands(){
   loadCustomBrands();
+  if(GAS_URL){
+    const data=await gasRead('brands');
+    if(data){
+      // Apply deleted defaults from GAS
+      if(data['__deleted']){try{const del=JSON.parse(data['__deleted']);localStorage.setItem('fi_deleted_defaults',JSON.stringify(del));del.forEach(id=>{const idx=BRANDS.findIndex(b=>b.id===id);if(idx!==-1)BRANDS.splice(idx,1);});}catch{}}
+      // Apply custom brands from GAS
+      if(data['__custom']){try{const custom=JSON.parse(data['__custom']);custom.forEach(b=>{if(!BRANDS.find(x=>x.id===b.id))BRANDS.push(b);});}catch{}}
+      // Apply post data
+      BRANDS.forEach(b=>{if(data[b.id]){try{lsSet(bsk(b.id),JSON.parse(data[b.id]));}catch{}}});
+    }
+  }
   seedBrandData();
   renderBrandTabs();
   renderBrandsMain();
-  // Sync from GAS
-  if(GAS_URL){
-    BRANDS.forEach(async b=>{
-      const data=await gasRead('brands');
-      if(data&&data[b.id]){try{lsSet(bsk(b.id),JSON.parse(data[b.id]));renderBrandsMain();}catch{}}
-    });
-  }
 }
 
 function renderBrandTabs(){
@@ -2027,7 +2032,7 @@ function deleteBrand(id){
   saveCustomBrands();
   // Also track deleted defaults so they don't re-seed
   const deletedDefaults=JSON.parse(localStorage.getItem('fi_deleted_defaults')||'[]');
-  if(!deletedDefaults.includes(id)){deletedDefaults.push(id);localStorage.setItem('fi_deleted_defaults',JSON.stringify(deletedDefaults));}
+  if(!deletedDefaults.includes(id)){deletedDefaults.push(id);localStorage.setItem('fi_deleted_defaults',JSON.stringify(deletedDefaults));gasWrite('brands','__deleted',deletedDefaults);}
   // Switch to first remaining brand
   currentBrand=BRANDS.length>0?BRANDS[0].id:'';
   if(currentBrand){renderBrandTabs();renderBrandsMain();}
